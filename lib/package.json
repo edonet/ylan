@@ -1,0 +1,9 @@
+{
+    "name": "ylan",
+    "version": "0.0.1",
+    "description": "ylan",
+    "main": "index.js",
+    "repository": "git@github.com:edonet/ylan.git",
+    "author": "edoner <edonet@163.com>",
+    "license": "MIT"
+}
