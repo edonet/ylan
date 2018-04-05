@@ -1,0 +1,12 @@
+{
+    "name": "ylan",
+    "version": "0.0.106",
+    "description": "ylan",
+    "main": "index.js",
+    "scripts": {
+        "dist": "cd ./lib && yarn publish"
+    },
+    "repository": "git@github.com:edonet/ylan.git",
+    "author": "edoner <edonet@163.com>",
+    "license": "MIT"
+}
