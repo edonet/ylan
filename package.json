@@ -9,7 +9,5 @@
     "repository": "git@github.com:edonet/ylan.git",
     "author": "edoner <edonet@163.com>",
     "license": "MIT",
-    "dependencies": {
-        "history": "^4.7.2"
-    }
+    "dependencies": {}
 }
