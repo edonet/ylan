@@ -208,4 +208,45 @@ describe('测试【history】', () => {
         // 返回到不存在的页面
         history.goBack(state.pathname);
     });
+
+    /* 测试路径解析 */
+    test('测试路径解析', () => {
+
+        // 检验默认返回根目录
+        expect(history.resolve()).toBe('/');
+
+        // 检验当前目录
+        expect(history.resolve('./index/about')).toBe('/index/about');
+        expect(history.resolve('./index/./././about')).toBe('/index/about');
+
+        // 检验上一目录目录
+        expect(history.resolve('./index/../about')).toBe('/about');
+        expect(history.resolve('./index/.././about')).toBe('/about');
+
+        // 检验多参数
+        expect(history.resolve('./index', '../about/user', '../route')).toBe('/about/route');
+        expect(history.resolve('./index', '../about/user', '/route')).toBe('/route');
+        expect(history.resolve('./index', '../about/user', '/route', '../../abc')).toBe('/');
+        expect(history.resolve('./index', '../about/user', '/route', '../../../abc')).toBe('/');
+        expect(history.resolve('./index', '../about/user', '/route', '../../abc/../')).toBe('/');
+        expect(history.resolve('./index', '../about/user', '/route', '../../abc/.../')).toBe('/...');
+    });
+
+    /* 测试匹配路径 */
+    test('测试匹配路径', () => {
+        let url = '/index/user',
+            eq = (path, result) => {
+                expect(history.match(path)).toEqual({ url, path, ...result });
+            };
+
+
+        // 跳转路由
+        history.go(url);
+
+        // 完全匹配
+        eq('/', { matched: true, isExact: false });
+        eq('/index', { matched: true, isExact: false });
+        eq('/index/user', { matched: true, isExact: true });
+        eq('/user', { matched: false, isExact: false });
+    });
 });
