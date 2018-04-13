@@ -56,6 +56,7 @@ describe('测试【history】', () => {
 
     /* 跳转到路径 */
     test('跳转到路径', () => {
+        let cb = jest.fn();
 
         // 定义状态
         state = {
@@ -78,6 +79,24 @@ describe('测试【history】', () => {
 
         // 跳转到页面
         history.go(state.pathname);
+
+        // 添加监听
+        history.subscribe(cb);
+
+        // 定义状态
+        state = {
+            method: history.actionTypes.replace,
+            pathname: '/index/user',
+            histories: ['/', '/index', '/index/user'],
+            length: 3
+        };
+
+        // 重载路由
+        history.reload();
+
+        // 校验回调
+        expect(cb.mock.calls).toHaveLength(1);
+        expect(cb.mock.calls[0][0]).toEqual(state);
     });
 
     /* 替换到路径 */

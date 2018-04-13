@@ -68,5 +68,17 @@ describe('测试【observer】', () => {
         expect(count).toBe(2);
         expect(cb.mock.calls).toHaveLength(3);
         expect(cb.mock.calls[2][0]).toBeNull();
+
+        // 清空监听
+        ob.clear();
+
+        // 校验发布
+        state = null;
+        ob.notify(state);
+
+        // 校验回调
+        expect(count).toBe(2);
+        expect(cb.mock.calls).toHaveLength(3);
+        expect(cb.mock.calls[2][0]).toBeNull();
     });
 });
