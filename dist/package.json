@@ -3,11 +3,10 @@
     "version": "0.0.115",
     "description": "ylan",
     "main": "index.js",
-    "scripts": {
-        "dist": "babel ./lib && yarn run copy && cd ./dist && yarn publish",
-        "copy": "cp ./lib/package.json ./dist/package.json"
-    },
     "repository": "git@github.com:edonet/ylan.git",
     "author": "edoner <edonet@163.com>",
-    "license": "MIT"
+    "license": "MIT",
+    "dependencies": {
+        "history": "^4.7.2"
+    }
 }
