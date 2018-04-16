@@ -1,6 +1,6 @@
 {
     "name": "ylan",
-    "version": "0.0.115",
+    "version": "0.0.116",
     "description": "ylan",
     "main": "index.js",
     "repository": "git@github.com:edonet/ylan.git",
