@@ -1,12 +1,13 @@
 {
     "name": "ylan",
-    "version": "0.0.113",
+    "version": "0.0.117",
     "description": "ylan",
     "main": "index.js",
-    "scripts": {
-        "dist": "babel ./lib && cd ./dist && yarn publish"
-    },
+    "lib": "./lib",
     "repository": "git@github.com:edonet/ylan.git",
     "author": "edoner <edonet@163.com>",
-    "license": "MIT"
+    "license": "MIT",
+    "dependencies": {
+        "history": "^4.7.2"
+    }
 }
