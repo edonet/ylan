@@ -12,7 +12,7 @@
  * 加载模块
  *****************************************
  */
-import { stringify, parse } from '../lib/qs';
+import { stringify, parse, encode, decode } from '../lib/qs';
 
 
 /**
@@ -94,5 +94,11 @@ describe('测试【qs】', () => {
         // 校验连接符
         query = 'name&white|sex[0]&man|sex[1]&women';
         expect(parse(query, '|', '&')).toEqual({ name: 'white', sex: ['man', 'women'] });
+    });
+
+    /* 转码、解码查询字符串 */
+    test('转码、解码查询字符串', () => {
+        expect(encode('name=慕白&age=24')).toBe('name=%E6%85%95%E7%99%BD&age=24');
+        expect(decode('name=%E6%85%95%E7%99%BD&age=24')).toBe('name=慕白&age=24');
     });
 });
