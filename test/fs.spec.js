@@ -122,18 +122,25 @@ describe('测试【fs】', () => {
         await Promise.all([
             fs.writeFile('tmp/a.txt', 'a'),
             fs.writeFile('tmp/b.txt', 'b'),
-            fs.writeFile('tmp/c.txt', 'c')
+            fs.writeFile('tmp/c.txt', 'c'),
+            fs.mkdir('tmp/node_modules')
         ]);
 
         // 复制文件
         await fs.copy('tmp', 'tmp2');
 
+        // 获取状态
+        let [stats, ...res] = await Promise.all([
+                fs.stat('tmp/node_modules'),
+                fs.readFile('tmp2/a.txt'),
+                fs.readFile('tmp2/b.txt'),
+                fs.readFile('tmp2/c.txt'),
+                fs.stat('tmp2/node_modules')
+            ]);
+
         // 校验结果
-        await Promise.all([
-            async () => expect(await fs.writeFile('tmp/a.txt')).toBe('a'),
-            async () => expect(await fs.writeFile('tmp/b.txt')).toBe('b'),
-            async () => expect(await fs.writeFile('tmp/c.txt')).toBe('c')
-        ]);
+        expect(stats).toBeTruthy();
+        expect(res).toEqual(['a', 'b', 'c', null]);
 
         // 移除临时文件
         await fs.rmdir('tmp');
