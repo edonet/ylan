@@ -1,0 +1,14 @@
+{
+    "name": "ylan",
+    "version": "0.0.120",
+    "description": "ylan",
+    "main": "index.js",
+    "lib": "./lib",
+    "repository": "git@github.com:edonet/ylan.git",
+    "author": "edoner <edonet@163.com>",
+    "license": "MIT",
+    "dependencies": {
+        "axios": "^0.18.0",
+        "history": "^4.7.2"
+    }
+}
