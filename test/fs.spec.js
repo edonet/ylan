@@ -113,4 +113,30 @@ describe('测试【fs】', () => {
         // 校验目录不存在
         expect(await fs.stat(dir)).toBeNull();
     });
+
+    /* 复制目录 */
+    test('复制目录', async () => {
+
+        // 创建临时文件
+        await fs.mkdir('tmp');
+        await Promise.all([
+            fs.writeFile('tmp/a.txt', 'a'),
+            fs.writeFile('tmp/b.txt', 'b'),
+            fs.writeFile('tmp/c.txt', 'c')
+        ]);
+
+        // 复制文件
+        await fs.copy('tmp', 'tmp2');
+
+        // 校验结果
+        await Promise.all([
+            async () => expect(await fs.writeFile('tmp/a.txt')).toBe('a'),
+            async () => expect(await fs.writeFile('tmp/b.txt')).toBe('b'),
+            async () => expect(await fs.writeFile('tmp/c.txt')).toBe('c')
+        ]);
+
+        // 移除临时文件
+        await fs.rmdir('tmp');
+        await fs.rmdir('tmp2');
+    });
 });
