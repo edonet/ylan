@@ -1,6 +1,6 @@
 {
     "name": "ylan",
-    "version": "0.0.124",
+    "version": "0.0.126",
     "description": "ylan",
     "main": "index.js",
     "lib": "./lib",
