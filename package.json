@@ -1,6 +1,6 @@
 {
     "name": "ylan",
-    "version": "0.0.126",
+    "version": "0.0.127",
     "description": "ylan",
     "main": "index.js",
     "lib": "./lib",
@@ -9,6 +9,7 @@
     "license": "MIT",
     "dependencies": {
         "axios": "^0.18.0",
+        "glob": "^7.1.2",
         "history": "^4.7.2",
         "xml2js": "^0.4.19"
     }

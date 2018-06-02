@@ -146,4 +146,24 @@ describe('测试【fs】', () => {
         await fs.rmdir('tmp');
         await fs.rmdir('tmp2');
     });
+
+    /* 搜索文件 */
+    test('搜索文件', async () => {
+
+        // 创建临时文件
+        await fs.mkdir('tmp');
+        await fs.mkdir('tmp/b');
+        await Promise.all([
+            fs.writeFile('tmp/a.txt', 'a'),
+            fs.writeFile('tmp/b/b.txt', 'b'),
+            fs.writeFile('tmp/c.txt', 'c')
+        ]);
+
+        // 校验搜索结果
+        expect(await fs.search('tmp/*.txt')).toEqual(['tmp/a.txt', 'tmp/c.txt']);
+        expect(await fs.search('tmp/**/*.txt')).toEqual(['tmp/a.txt', 'tmp/b/b.txt', 'tmp/c.txt']);
+
+        // 移除临时文件
+        await fs.rmdir('tmp');
+    });
 });
